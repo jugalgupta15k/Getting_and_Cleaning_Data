@@ -1,19 +1,36 @@
-Description of steps undertaken to clean and reshape the data:
+Feature Selection 
+=================
 
-Read the files containing the labels for activities and features of vector
+The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
 
-Read the test data
+Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
 
-2.1) Read the data identifying subjects for test observations and rename columns 2.2) Read the data containing the feture list for test observations and add descriptions 2.3) Read the data identifying type of activity for test observations and rename columns 2.4) Column bind files under 2.1, 2.2 and 2.3 to get the complete table for test observations 2.5) Keep only necessary columns, Subject.Id, Activity and columns containing mean in their description 2.6) Add the description for activity type to produce the final test data for observations
+Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals). 
 
-Read the training data
-Reproduce steps 2.1 -> 2.6 for training data to get the final training data for observations
+These signals were used to estimate variables of the feature vector for each pattern:  
+'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
 
-Merge Training and Test data to create one data set (training and test data have the same format, they will be bound vertically)
+tBodyAcc-XYZ
+tGravityAcc-XYZ
+tBodyAccJerk-XYZ
+tBodyGyro-XYZ
+tBodyGyroJerk-XYZ
+tBodyAccMag
+tGravityAccMag
+tBodyAccJerkMag
+tBodyGyroMag
+tBodyGyroJerkMag
+fBodyAcc-XYZ
+fBodyAccJerk-XYZ
+fBodyGyro-XYZ
+fBodyAccMag
+fBodyAccJerkMag
+fBodyGyroMag
+fBodyGyroJerkMag
 
-Reshape the merged data to produce the desired format for data aggregation
+The set of variables that were estimated from these signals are: 
 
-5.1) Use the melt function to prepare data for dcast aggregation. 5.2) Aggregate data with dcast function to produce the final (tidy) data set
+mean(): Mean value
+std(): Standard deviation
 
-Finnaly write out to csv file the tidy data set in the Data folder.
-
+Each measurement is identified by a specific subject which range from 1 to 30 and a speficic activity which included walking, walking_upstairs, walking downstairs, sitting, standing and laying. 
